@@ -16,6 +16,12 @@ const contactsSlice = createSlice({
       state.isLoading = false;
       state.error = null;
       state.items.push(payload);
+      // return {
+      //   ...state,
+      //   items: [...payload],
+      //   isLoading: false,
+      //   error: null,
+      // };
     },
     [fetchAllContacts.rejected]: (state, { payload }) => {
       state.isLoading = false;
@@ -24,4 +30,4 @@ const contactsSlice = createSlice({
   },
 });
 
-export default contactsSlice.reducer;
+export const contactsReducer = contactsSlice.reducer;

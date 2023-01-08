@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const api_key = '63b2ad1b5e490925c51e5125';
+const api_key = '63bb336a32d17a509089f16a';
 
 axios.defaults.baseURL = `https://${api_key}.mockapi.io`;
 
