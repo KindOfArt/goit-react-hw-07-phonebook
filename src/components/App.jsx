@@ -7,7 +7,7 @@ import { fetchAllContacts } from './redux/contacts/contactsSlice';
 export const App = () => {
   const dispatch = useDispatch();
 
-  const contacts = useSelector(state => state.phonebook);
+  const contacts = useSelector(state => state.phonebook.contacts);
 
   useEffect(() => {
     dispatch(fetchAllContacts());
