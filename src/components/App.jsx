@@ -1,16 +1,27 @@
+import { useDispatch, useSelector } from 'react-redux';
+import ContactsForm from './Contacts/ContactsForm/ContactsForm';
+import FilterField from './FilterField/FilterField';
+import { useEffect } from 'react';
+import { fetchAllContacts } from './redux/contacts/contactsSlice';
+
 export const App = () => {
+  const dispatch = useDispatch();
+
+  const contacts = useSelector(state => state.phonebook.contacts);
+
+  useEffect(() => {
+    dispatch(fetchAllContacts());
+  }, [dispatch]);
+
+  console.log(contacts);
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <main>
+      <ContactsForm />
+      <br />
+      <FilterField />
+      <br />
+      <div>Contacts List</div>
+    </main>
   );
 };
