@@ -2,18 +2,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import ContactsForm from './Contacts/ContactsForm/ContactsForm';
 import FilterField from './FilterField/FilterField';
 import { useEffect } from 'react';
-import { fetchAllContacts } from './redux/contacts/contactsSlice';
+import { fetchAllContacts } from './redux/contacts/contactsOperations';
 
 export const App = () => {
   const dispatch = useDispatch();
 
-  const contacts = useSelector(state => state.phonebook.contacts);
+  const contactsList = useSelector(state => state.contacts.items);
 
   useEffect(() => {
     dispatch(fetchAllContacts());
   }, [dispatch]);
 
-  console.log(contacts);
+  console.log(contactsList);
 
   return (
     <main>
@@ -21,7 +21,18 @@ export const App = () => {
       <br />
       <FilterField />
       <br />
-      <div>Contacts List</div>
+      <div>
+        {/* {contactsList.length > 0 && (
+          <ul>
+            {contactsList.map(({ id, name, phone }) => (
+              <li key={id}>
+                <p>{name}</p>
+                <p>{phone}</p>
+              </li>
+            ))}
+          </ul>
+        )} */}
+      </div>
     </main>
   );
 };

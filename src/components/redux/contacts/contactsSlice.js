@@ -1,20 +1,10 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchContacts } from 'contactsAPI';
-
-export const fetchAllContacts = createAsyncThunk(
-  'contacts/fetchAllContacts',
-  async (_, thunkAPI) => {
-    try {
-      const contacts = await fetchContacts();
-      return contacts;
-    } catch (error) {}
-  }
-);
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchAllContacts } from './contactsOperations';
 
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: {
-    contacts: [],
+    items: [],
     isLoading: false,
     error: null,
   },
@@ -23,10 +13,8 @@ const contactsSlice = createSlice({
       state.isLoading = true;
     },
     [fetchAllContacts.fulfilled]: (state, { payload }) => {
-      // if (state.isLoading) {
-      // }
-      state.contacts.push(payload);
       state.isLoading = false;
+      state.items.push(payload);
     },
   },
 });
