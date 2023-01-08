@@ -22,8 +22,12 @@ const contactsSlice = createSlice({
     [fetchAllContacts.pending]: state => {
       state.isLoading = true;
     },
-    [fetchAllContacts.fulfilled]: (state, action) => {
-      state.contacts.push(action.payload);
+    [fetchAllContacts.fulfilled]: (state, { payload }) => {
+      // if (state.isLoading === false) {
+      //   return;
+      // }
+      state.contacts.push(payload);
+      state.isLoading = false;
     },
   },
 });
