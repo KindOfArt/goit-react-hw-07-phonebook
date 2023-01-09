@@ -10,9 +10,11 @@ export async function fetchContacts() {
 }
 
 export async function addContact(newContact) {
-  await axios.post('/contacts', newContact);
+  const { data } = await axios.post('/contacts', newContact);
+  return data;
 }
 
 export async function deleteContact(contactId) {
-  await axios.delete(`/contacts/${contactId}`);
+  const { data } = await axios.delete(`/contacts/${contactId}`);
+  return data;
 }

@@ -1,8 +1,23 @@
 import { Field, Form, Formik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+import { addNewContact } from 'redux/contacts/contactsOperations';
+import { selectContacts } from 'redux/contacts/contactsSelectors';
 
 const ContactsForm = () => {
-  const handleSubmit = value => {
-    console.log(value);
+  const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
+
+  const handleSubmit = (value, { resetForm }) => {
+    const { name: newName, phone: newPhone } = value;
+
+    !contacts.find(
+      ({ name, phone }) =>
+        name.toLowerCase() === newName.toLowerCase() && phone === newPhone
+    )
+      ? dispatch(addNewContact({ ...value, id: '' }))
+      : alert('This contact is already in your phonebook');
+
+    resetForm();
   };
 
   return (
